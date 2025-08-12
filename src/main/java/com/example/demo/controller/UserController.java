@@ -3,16 +3,19 @@ package com.example.demo.controller;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
 @RestController
-@AllArgsConstructor
+//@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("/add")
     public void add(@RequestBody User user) {
@@ -29,13 +32,13 @@ public class UserController {
         userService.remove(id);
     }
 
-    @GetMapping("getById/{id}")
+    @GetMapping("/getById/{id}")
     public User getById(@PathVariable long id) {
         return userService.getById(id);
     }
 
 
-    @GetMapping("getAll")
+    @GetMapping("/getAll")
     public Collection<User> getAll() {
         return userService.getAll();
     }
