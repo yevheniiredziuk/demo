@@ -2,10 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -36,7 +33,6 @@ public class UserController {
     public User getById(@PathVariable long id) {
         return userService.getById(id);
     }
-
 
     @GetMapping("/getAll")
     public Collection<User> getAll() {

@@ -1,10 +1,8 @@
 package com.example.demo.service;
 
+import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,11 +26,16 @@ public class UserService {
         userRepository.remove(id);
     }
 
-    public User getById(long id) {
-        return userRepository.getById(id);
+    public User getById(long id) throws UserNotFoundException {
+        User user = userRepository.getById(id);
+        if(user == null) {
+            throw new UserNotFoundException(String.format("user with id %d not found", id));
+        }
+        return user;
     }
 
     public Collection<User> getAll() {
         return userRepository.getAll();
     }
+
 }
