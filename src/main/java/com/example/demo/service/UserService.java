@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.UserRepositoryInMemory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.Collection;
 //@AllArgsConstructor
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRepositoryInMemory userRepositoryInMemory;
+    private final UserRepository userRepositoryInMemory;
 
     public void add(User user) {
         userRepositoryInMemory.add(user);
