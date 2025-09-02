@@ -3,32 +3,32 @@ package com.example.demo.service;
 import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.repository.UserRepositoryInMemory;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 
 import java.util.Collection;
 
 @Service
-//@AllArgsConstructor
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRepository userRepositoryInMemory;
+    private final UserRepository userRepository;
 
     public void add(User user) {
-        userRepositoryInMemory.add(user);
+        userRepository.add(user);
     }
 
     public void update(User user) {
-        userRepositoryInMemory.update(user);
+        userRepository.update(user);
     }
 
     public void remove(long id) {
-        userRepositoryInMemory.remove(id);
+        userRepository.remove(id);
     }
 
     public User getById(long id) throws UserNotFoundException {
-        User user = userRepositoryInMemory.getById(id);
+        User user = userRepository.getById(id);
         if(user == null) {
             throw new UserNotFoundException(String.format("user with id %d not found", id));
         }
@@ -36,7 +36,7 @@ public class UserService {
     }
 
     public Collection<User> getAll() {
-        return userRepositoryInMemory.getAll();
+        return userRepository.getAll();
     }
 
 }

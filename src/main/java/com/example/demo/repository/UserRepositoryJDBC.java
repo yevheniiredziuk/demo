@@ -11,7 +11,7 @@ import java.util.Collection;
 
 @Repository
 @AllArgsConstructor
-@ConditionalOnProperty(name="data.store.type", havingValue = "JDBC ")
+@ConditionalOnProperty(name="data.store.type", havingValue = "JDBC")
 public class UserRepositoryJDBC implements UserRepository {
 
     private JdbcTemplate jdbcTemplate;
