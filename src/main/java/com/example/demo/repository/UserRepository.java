@@ -1,33 +1,17 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.User;
-import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
-@Repository
-public class UserRepository {
-    private static final Map<Long, User> USERS = new HashMap<>();
+public interface UserRepository {
+    void add(User user);
 
-     public void add(User user) {
-         USERS.put(user.getId(), user);
-     }
+    void update(User user);
 
-    public void update(User user) {
-        USERS.computeIfPresent(user.getId(), (k, v) -> user);
-    }
+    void remove(long id);
 
-    public void remove(long id) {
-         USERS.remove(id);
-    }
+    User getById(long id);
 
-    public User getById(long id) {
-         return USERS.get(id);
-    }
-
-    public Collection<User> getAll() {
-         return USERS.values();
-    }
+    Collection<User> getAll();
 }
