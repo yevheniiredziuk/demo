@@ -3,7 +3,6 @@ package com.example.demo.repository;
 import com.example.demo.model.User;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;

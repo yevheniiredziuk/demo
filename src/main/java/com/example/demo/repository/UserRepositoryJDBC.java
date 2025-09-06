@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import java.util.Collection;
 
 @Repository
@@ -41,6 +40,4 @@ public class UserRepositoryJDBC implements UserRepository {
         String sql = "DELETE FROM user WHERE id = ?";
         jdbcTemplate.update(sql, id);
      }
-
-
 }
