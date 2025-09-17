@@ -29,7 +29,7 @@ public class SecurityConfig {
     public InMemoryUserDetailsManager inMemoryUserDetailsManager(PasswordEncoder passwordEncoder) {
         UserDetails user = User.builder()
                 .username("user")
-                .password(passwordEncoder.encode("password"))
+                .password(passwordEncoder.encode("pwd"))
                 //.roles("USER")
                 .build();
         return new InMemoryUserDetailsManager(user);
