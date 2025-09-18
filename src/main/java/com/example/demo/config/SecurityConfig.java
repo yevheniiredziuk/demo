@@ -28,8 +28,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/users/**").authenticated()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().permitAll())
+                        .requestMatchers("/admin/**").hasRole("ADMIN"))
+                        //.anyRequest().permitAll())
                 .formLogin(from -> from.loginPage("/login").permitAll());
         return http.build();
     }
@@ -38,7 +38,6 @@ public class SecurityConfig {
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager(PasswordEncoder passwordEncoder) {
         UserDetails user = User.builder()
-       // UserDetails user = User.withDefaultPasswordEncoder()
                 .username("user")
                 .password(passwordEncoder.encode("pwd"))
                 .build();
