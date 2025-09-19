@@ -29,10 +29,10 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/users/**").authenticated()
                         .requestMatchers("/admin/**").hasRole("ADMIN"))
-                .formLogin(from -> from.loginPage("/login")
-                        .defaultSuccessUrl("/users/getAll", true).permitAll())
-                .logout(logout -> logout.logoutSuccessUrl("/login")
-                        .permitAll());
+                        .formLogin(from -> from.loginPage("/login")
+                            .defaultSuccessUrl("/users/getAll", true).permitAll())
+                        .logout(logout -> logout.logoutSuccessUrl("/login")
+                            .permitAll());
         return http.build();
     }
 
