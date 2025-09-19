@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
 // step 1 -> all clean
 //    @Bean
 //    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -22,15 +23,16 @@ public class SecurityConfig {
 //
 //    }
 
-
-// step 2 -> only /users/** authenticated
-//    @Bean
+    // step 2 -> only /users/** authenticated
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/users/**").authenticated()
                         .requestMatchers("/admin/**").hasRole("ADMIN"))
-                        //.anyRequest().permitAll())
-                .formLogin(from -> from.loginPage("/login").permitAll());
+                .formLogin(from -> from.loginPage("/login")
+                        .defaultSuccessUrl("/users/getAll", true).permitAll())
+                .logout(logout -> logout.logoutSuccessUrl("/login")
+                        .permitAll());
         return http.build();
     }
 
